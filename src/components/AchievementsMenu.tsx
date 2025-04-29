@@ -36,7 +36,7 @@ const AchievementsMenu: React.FC<AchievementsMenuProps> = ({ treesSaved, waterSa
       description: 'Conserve water resources',
       icon: <Droplets size={18} />,
       progress: waterSaved,
-      target: 1, // Reduced from 10
+      target: 1,
       unit: 'L'
     },
     {
@@ -45,7 +45,7 @@ const AchievementsMenu: React.FC<AchievementsMenuProps> = ({ treesSaved, waterSa
       description: 'Reduce carbon footprint',
       icon: <Wind size={18} />,
       progress: co2Saved,
-      target: 0.5, // Reduced from 5
+      target: 0.5,
       unit: 'g'
     }
   ];
