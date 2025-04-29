@@ -16,7 +16,6 @@ const MessageInput: React.FC<MessageInputProps> = ({
 }) => {
   const [estimatedCO2, setEstimatedCO2] = useState(0);
 
-  // Update estimated CO2 whenever input value changes
   useEffect(() => {
     // Estimate CO2 based on character count (simplified calculation)
     const estimatedTokens = value.length / 4; // Rough estimate of tokens
