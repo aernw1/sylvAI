@@ -8,6 +8,7 @@ import ActionButtons from './ActionButtons';
 import Footer from './Footer';
 import EcoMetrics from './EcoMetrics';
 import ChatThreads from './ChatThreads';
+import EcoTipsBanner from './EcoTipsBanner';
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
@@ -25,6 +26,7 @@ const ChatInterface: React.FC = () => {
   return (
     <ChatContext.Provider value={chatbot}>
       <div className="flex flex-col h-screen bg-gray-50">
+        <EcoTipsBanner />
         <EcoMetrics totalTokens={chatbot.totalTokens} />
         <ChatThreads />
         <ChatHeader onClear={chatbot.clearConversation} />
