@@ -6,9 +6,10 @@ import { Loader2 } from 'lucide-react';
 interface MessageListProps {
   messages: MessageType[];
   isTyping: boolean;
+  darkMode: boolean;
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages, isTyping }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, isTyping, darkMode }) => {
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   // Scroll to bottom when messages change or typing status changes
@@ -20,7 +21,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages, isTyping }) => {
     <div className="flex-1 overflow-y-auto px-4 py-2">
       <div className="max-w-3xl mx-auto">
         {messages.map((message) => (
-          <Message key={message.id} message={message} />
+          <Message key={message.id} message={message} darkMode={darkMode} />
         ))}
         {isTyping && (
           <div className="flex items-center gap-2 text-gray-500 animate-pulse pl-11 mt-2">
