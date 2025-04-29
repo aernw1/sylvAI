@@ -1,5 +1,6 @@
 import React from 'react';
 import { Droplets, Trees as Tree, Wind } from 'lucide-react';
+import AchievementsMenu from './AchievementsMenu';
 
 interface EcoMetricsProps {
   totalTokens: number;
@@ -19,18 +20,25 @@ const EcoMetrics: React.FC<EcoMetricsProps> = ({ totalTokens }) => {
   ];
 
   return (
-    <div className="absolute left-4 top-4 bg-white rounded-lg shadow-md p-3">
-      {metrics.map((metric, index) => (
-        <div key={index} className="flex items-center gap-2 mb-2 last:mb-0">
-          <span className="text-green-600">{metric.icon}</span>
-          <div>
-            <span className="font-semibold text-gray-800">{metric.value}</span>
-            <span className="text-xs text-gray-500 ml-1">{metric.label}</span>
+    <div className="absolute left-4 top-4 space-y-4">
+      <div className="bg-white rounded-lg shadow-md p-3">
+        {metrics.map((metric, index) => (
+          <div key={index} className="flex items-center gap-2 mb-2 last:mb-0">
+            <span className="text-green-600">{metric.icon}</span>
+            <div>
+              <span className="font-semibold text-gray-800">{metric.value}</span>
+              <span className="text-xs text-gray-500 ml-1">{metric.label}</span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <AchievementsMenu
+        treesSaved={Number(treesSaved)}
+        waterSaved={Number(waterSaved)}
+        co2Saved={Number(co2Saved)}
+      />
     </div>
   );
 };
 
-export default EcoMetrics
+export default EcoMetrics;
