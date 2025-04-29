@@ -10,7 +10,7 @@ const ChatThreads: React.FC = () => {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed left-4 top-40 bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors z-50"
+        className="fixed left-4 bottom-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors z-50"
       >
         {isOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
       </button>
