@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
-import { MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
-
-interface Thread {
-  id: string;
-  title: string;
-  date: string;
-}
+import { MessageSquare, ChevronLeft, ChevronRight, Plus, Trash2 } from 'lucide-react';
+import { useChatContext } from './ChatInterface';
 
 const ChatThreads: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const threads: Thread[] = [
-    { id: '1', title: 'SylvAI Eco-Friendly Chatbot Interface', date: 'Today' },
-    { id: '2', title: 'Sustainable Development Discussion', date: 'Today' },
-  ];
+  const { chats, currentChatId, createNewChat, switchChat, deleteChat } = useChatContext();
 
   return (
     <>
@@ -28,20 +19,47 @@ const ChatThreads: React.FC = () => {
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`} style={{ width: '280px' }}>
         <div className="p-4">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <MessageSquare size={20} className="text-green-600" />
-            Your Chats
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+              <MessageSquare size={20} className="text-green-600" />
+              Your Chats
+            </h2>
+            <button
+              onClick={createNewChat}
+              className="p-2 text-green-600 hover:bg-green-50 rounded-full transition-colors"
+              title="New Chat"
+            >
+              <Plus size={20} />
+            </button>
+          </div>
           
           <div className="space-y-2">
-            {threads.map(thread => (
-              <button
-                key={thread.id}
-                className="w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors"
+            {chats.map(chat => (
+              <div
+                key={chat.id}
+                className={`flex items-center justify-between w-full p-3 rounded-lg transition-colors ${
+                  currentChatId === chat.id 
+                    ? 'bg-green-50 text-green-700' 
+                    : 'hover:bg-gray-50'
+                }`}
               >
-                <p className="text-sm text-gray-500">{thread.date}</p>
-                <p className="text-sm font-medium text-gray-800">{thread.title}</p>
-              </button>
+                <button
+                  onClick={() => switchChat(chat.id)}
+                  className="flex-1 text-left"
+                >
+                  <p className="text-sm font-medium">{chat.name}</p>
+                  <p className="text-xs text-gray-500">
+                    {chat.messages.length} messages
+                  </p>
+                </button>
+                <button
+                  onClick={() => deleteChat(chat.id)}
+                  className="p-1.5 text-gray-400 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors"
+                  title="Delete chat"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
             ))}
           </div>
         </div>

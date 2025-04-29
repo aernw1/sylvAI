@@ -6,7 +6,16 @@ export interface Message {
   tokens?: number;
 }
 
+export interface Chat {
+  id: string;
+  name: string;
+  messages: Message[];
+  totalTokens: number;
+}
+
 export interface ChatContextType {
+  chats: Chat[];
+  currentChatId: string;
   messages: Message[];
   inputValue: string;
   setInputValue: (value: string) => void;
@@ -15,6 +24,9 @@ export interface ChatContextType {
   clearConversation: () => void;
   isTyping: boolean;
   totalTokens: number;
+  createNewChat: () => void;
+  switchChat: (chatId: string) => void;
+  deleteChat: (chatId: string) => void;
 }
 
 export interface EcoMetrics {
